@@ -10,7 +10,6 @@ from click.testing import CliRunner
 from meix import meix
 from meix import cli
 
-
 @pytest.fixture
 def response():
     """Sample pytest fixture.
@@ -36,3 +35,11 @@ def test_command_line_interface():
     help_result = runner.invoke(cli.main, ['--help'])
     assert help_result.exit_code == 0
     assert '--help  Show this message and exit.' in help_result.output
+
+def test_message(capsys):
+    """We use capsys to capture printing to stdout"""
+    """The message function only prints to stdout,
+       it does not return anything"""
+    assert meix.message("") == None
+    out, err = capsys.readouterr()
+    assert "Hello pretend person!" in out
