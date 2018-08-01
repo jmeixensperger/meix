@@ -3,14 +3,15 @@
 """Console script for meix."""
 import sys
 import click
+from meix import message
 
 
 @click.command()
-def main(args=None):
+@click.argument('name', required=False)
+def main(name):
     """Console script for meix."""
-    click.echo("Replace this message by putting your code into "
-               "meix.cli.main")
-    click.echo("See click documentation at http://click.pocoo.org/")
+    name = name or "pretend person"
+    message(name)
     return 0
 
 
